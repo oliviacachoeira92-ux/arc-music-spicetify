@@ -436,3 +436,74 @@ html, body, #main, .Root, .Root__top-container {
 .main-view-container__scroll-node-child {
   background: linear-gradient(90deg,rgba(8,6,13,.36),rgba(12,8,19,.20) 55%,rgba(10,7,15,.14)) !important;
 }
+
+
+/* ARC MUSIC v0.8 — transparent glass over cinematic wallpaper.
+   Spotify's main view draws opaque gradients on nested playlist elements.
+   Clear these surfaces, but preserve cards/artwork and foreground text. */
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child,
+.main-view-container__scroll-node-child > div,
+.main-view-container__scroll-node-child > div > div {
+  background-color: transparent !important;
+}
+.main-view-container__scroll-node-child {
+  background: rgba(9,6,16,.16) !important;
+}
+.main-entityHeader-container,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.main-actionBarBackground-background,
+.main-actionBarBackground-backgroundContainer,
+.main-trackList-trackList,
+.main-trackList-trackListHeader,
+.main-trackList-trackListRow,
+.main-view-container__scroll-node [class*="main-view-container__scroll-node-child"] {
+  background-color: transparent !important;
+}
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.main-actionBarBackground-background,
+.main-actionBarBackground-backgroundContainer {
+  background-image: none !important;
+  opacity: 0 !important;
+}
+.main-entityHeader-container {
+  background: linear-gradient(120deg,rgba(20,10,32,.27),rgba(35,13,35,.16)) !important;
+  border: 1px solid rgba(226,148,99,.22) !important;
+  border-radius: 18px !important;
+  -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+  backdrop-filter: blur(8px) saturate(120%) !important;
+}
+.main-entityHeader-container::after { display:none !important; }
+.main-trackList-trackListRow:hover {
+  background: rgba(119,58,143,.20) !important;
+}
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(187,109,82,.20) !important;
+}
+/* Preserve album art and cover imagery without dimming them. */
+.main-cardImage-imageWrapper,
+.main-entityHeader-image,
+.main-entityHeader-image img {
+  opacity: 1 !important;
+}
+/* More transparent navigation and footer glass */
+.Root__nav-bar,
+.main-yourLibraryX-library,
+.Root__right-sidebar {
+  background: rgba(14,9,22,.60) !important;
+  border: 1px solid rgba(227,153,100,.20) !important;
+  backdrop-filter: blur(15px) saturate(135%) !important;
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar,
+.main-playBar-playBar {
+  background: rgba(26,12,31,.64) !important;
+  border: 1px solid rgba(227,153,100,.27) !important;
+  backdrop-filter: blur(20px) saturate(135%) !important;
+}
