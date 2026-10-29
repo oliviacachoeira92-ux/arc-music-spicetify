@@ -411,3 +411,15 @@ html, body, #main, .Root, .Root__top-container {
 @media (max-width: 900px) {
  .main-view-container__scroll-node::before { inset: 64px 12px 90px 150px !important; opacity: .6 !important; }
 }
+
+
+/* v0.6 artwork refresh — background that was confirmed visible in v0.5. */
+.main-view-container__scroll-node::before {
+  background-image: url("https://raw.githubusercontent.com/oliviacachoeira92-ux/arc-music-spicetify/feat/obsidian-glass-v0.1/ObsidianGlass/phoenix.svg?v=6") !important;
+  background-size: cover !important;
+  background-position: 62% 44% !important;
+  opacity: .92 !important;
+}
+.main-view-container__scroll-node-child {
+  background: linear-gradient(90deg,rgba(8,6,13,.40),rgba(12,8,19,.22) 55%,rgba(10,7,15,.15)) !important;
+}
