@@ -264,3 +264,62 @@ button[data-testid="control-button-playpause"]:hover {
 @media (prefers-reduced-motion: reduce) {
   .main-trackList-trackListRow { transition:none; }
 }
+
+
+/* ARC MUSIC v0.3 — PHOENIX UNDER GLASS
+   Original SVG artwork is packaged locally with this theme.
+   Keep foreground text opaque, instead of fading the whole interface. */
+.Root {
+  isolation: isolate;
+  background: #09070e url("phoenix.svg") center center / cover no-repeat fixed !important;
+}
+.Root::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(5,4,9,.26),rgba(9,6,15,.04) 60%, rgba(8,5,11,.18));
+}
+.Root__top-container, .Root__main-view, .Root__nav-bar, .Root__right-sidebar, .Root__now-playing-bar {
+  position: relative;
+  z-index: 1;
+}
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child {
+  background: transparent !important;
+}
+.Root__main-view::before {
+  background: linear-gradient(180deg, rgba(10,8,16,.12),rgba(10,8,16,.3) 70%,rgba(10,8,16,.51)) !important;
+}
+.main-view-container__scroll-node-child {
+  background: rgba(10,8,16,.25) !important;
+}
+.Root__nav-bar,
+.Root__right-sidebar {
+  background: linear-gradient(135deg,rgba(19,11,28,.64),rgba(12,9,20,.72)) !important;
+  backdrop-filter: blur(28px) saturate(145%) !important;
+}
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView {
+  background: rgba(17,10,24,.56) !important;
+  backdrop-filter: blur(22px) saturate(140%) !important;
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar {
+  background: linear-gradient(115deg,rgba(39,14,28,.72),rgba(27,10,38,.68)) !important;
+  backdrop-filter: blur(28px) saturate(135%) !important;
+}
+.main-trackList-trackListRow:hover {
+  background: rgba(141,66,137,.18) !important;
+}
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(191,128,91,.18) !important;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .Root__nav-bar,.Root__right-sidebar,.main-yourLibraryX-library {
+    background:rgba(12,9,20,.92) !important;
+  }
+}
