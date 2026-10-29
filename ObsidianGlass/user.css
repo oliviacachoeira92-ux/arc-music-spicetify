@@ -423,3 +423,16 @@ html, body, #main, .Root, .Root__top-container {
 .main-view-container__scroll-node-child {
   background: linear-gradient(90deg,rgba(8,6,13,.40),rgba(12,8,19,.22) 55%,rgba(10,7,15,.15)) !important;
 }
+
+
+/* v0.7 cinematic art: use the actual image file, not vector approximation.
+   Asset expected: ObsidianGlass/phoenix-cinematic.png */
+.main-view-container__scroll-node::before {
+  background-image: url("https://raw.githubusercontent.com/oliviacachoeira92-ux/arc-music-spicetify/feat/obsidian-glass-v0.1/ObsidianGlass/phoenix-cinematic.png") !important;
+  background-position: 65% 46% !important;
+  background-size: cover !important;
+  opacity: .88 !important;
+}
+.main-view-container__scroll-node-child {
+  background: linear-gradient(90deg,rgba(8,6,13,.36),rgba(12,8,19,.20) 55%,rgba(10,7,15,.14)) !important;
+}
