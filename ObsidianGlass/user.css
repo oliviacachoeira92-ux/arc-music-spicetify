@@ -348,3 +348,66 @@ button[data-testid="control-button-playpause"]:hover {
 .Root__nav-bar {
   background: rgba(16,11,23,.80) !important;
 }
+
+
+/* ARC Music v0.5 — Phoenix visibility fix
+   Spotify paints several opaque layers above Root. Draw the art on the
+   scroll container itself, and clear its child surfaces rather than relying
+   on the Root wallpaper behind them. Keep artwork out of track text. */
+html, body, #main, .Root, .Root__top-container {
+  background-color: #08070d !important;
+}
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node {
+  position: relative !important;
+  isolation: isolate;
+}
+.main-view-container__scroll-node {
+  background: linear-gradient(180deg, rgba(9,6,15,.08), rgba(9,6,15,.32)) !important;
+}
+.main-view-container__scroll-node::before {
+  content: "" !important;
+  display: block !important;
+  position: fixed !important;
+  inset: 60px 24px 90px clamp(220px, 24vw, 360px) !important;
+  pointer-events: none !important;
+  background-image: url("https://raw.githubusercontent.com/oliviacachoeira92-ux/arc-music-spicetify/feat/obsidian-glass-v0.1/ObsidianGlass/phoenix.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  opacity: .90 !important;
+  z-index: -1 !important;
+}
+.main-view-container__scroll-node-child,
+.main-view-container__scroll-node-child > div,
+.main-view-container__scroll-node-child > div > div,
+.main-actionBarBackground-background,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  background-color: transparent !important;
+}
+.main-view-container__scroll-node-child {
+  background-image: linear-gradient(90deg, rgba(10,7,16,.10), rgba(10,7,16,.31)) !important;
+}
+.main-entityHeader-container,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  background-image: none !important;
+}
+.main-entityHeader-container {
+  background: rgba(21,12,31,.40) !important;
+  border: 1px solid rgba(191,128,91,.2);
+  backdrop-filter: blur(8px);
+}
+.main-trackList-trackListRow,
+.main-trackList-trackListHeader {
+  background-color: rgba(9,7,15,.12);
+}
+.main-yourLibraryX-library,
+.Root__nav-bar {
+  background: rgba(14,10,22,.72) !important;
+}
+@media (max-width: 900px) {
+ .main-view-container__scroll-node::before { inset: 64px 12px 90px 150px !important; opacity: .6 !important; }
+}
