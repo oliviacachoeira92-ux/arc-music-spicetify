@@ -134,3 +134,133 @@ button:focus-visible,
   .Root__nav-bar, .Root__right-sidebar, .main-yourLibraryX-library,
   .main-nowPlayingView-nowPlayingView { background: #17141e !important; }
 }
+
+
+/* ARC MUSIC V0.2 — SIGNATURE GLASS LAYER
+   The screenshot review showed that previous selectors barely touched the
+   current Spotify layout. These hooks target the current main view structure.
+   CSS-only; no added JS, remote assets or alteration of user data. */
+:root {
+  --arc-deep: #09090f;
+  --arc-pane: rgba(17, 17, 26, .68);
+  --arc-edge: rgba(219, 169, 135, .25);
+  --arc-aura: rgba(127, 69, 205, .22);
+}
+body, .Root, .Root__main-view, .main-view-container, .main-view-container__scroll-node {
+  background-color: var(--arc-deep) !important;
+}
+.Root__main-view {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(219,169,135,.20);
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.055), 0 22px 65px rgba(0,0,0,.28);
+}
+.Root__main-view::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 88% 14%, rgba(114,53,191,.20), transparent 35%),
+    radial-gradient(circle at 0% 80%, rgba(191,128,91,.13), transparent 35%);
+}
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child {
+  position: relative;
+}
+.main-view-container__scroll-node-child,
+.main-view-container__scroll-node,
+.main-view-container,
+.main-home-homeHeader {
+  background-color: transparent !important;
+}
+.Root__nav-bar,
+.Root__right-sidebar,
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView {
+  background: linear-gradient(145deg,rgba(29,24,38,.84),rgba(11,11,18,.77)) !important;
+  border: 1px solid var(--arc-edge) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 12px 45px rgba(0,0,0,.28) !important;
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar,
+.main-playBar-playBar {
+  background:
+    linear-gradient(110deg,rgba(191,128,91,.12),transparent 30%,rgba(128,80,216,.13)),
+    rgba(13,11,20,.90) !important;
+  border: 1px solid rgba(191,128,91,.34) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.085), 0 -10px 32px rgba(0,0,0,.32) !important;
+}
+.Root__main-view .main-entityHeader-container,
+.Root__main-view .main-entityHeader-background,
+.Root__main-view .main-entityHeader-backgroundColor {
+  border-radius: 18px 18px 0 0;
+}
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  opacity: .50 !important;
+  filter: saturate(.7) !important;
+}
+/* The music header gets a deliberate glass veil rather than a flat gradient. */
+.main-entityHeader-container {
+  position: relative;
+  background-image: linear-gradient(125deg,rgba(13,10,19,.42),rgba(66,31,85,.22)) !important;
+  box-shadow: inset 0 -1px rgba(191,128,91,.2);
+}
+.main-entityHeader-container::after {
+  content: "ARC / MUSIC";
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  z-index: 2;
+  pointer-events: none;
+  color: rgba(233,193,164,.72);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .32em;
+}
+.main-trackList-trackListRow {
+  border: 1px solid transparent;
+  border-radius: 11px !important;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.main-trackList-trackListRow:hover {
+  background: rgba(128,80,216,.13) !important;
+  border-color: rgba(191,128,91,.18);
+}
+.main-card-card {
+  background: linear-gradient(155deg,rgba(53,39,67,.48),rgba(22,20,30,.62)) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.055),0 12px 30px rgba(0,0,0,.16) !important;
+  backdrop-filter: blur(18px) saturate(140%);
+}
+.main-card-card:hover { box-shadow: inset 0 1px rgba(255,255,255,.12),0 16px 34px rgba(0,0,0,.27),0 0 0 1px rgba(191,128,91,.26) !important; }
+.main-topBar-topbarContent,
+.main-topBar-background,
+.main-topBar-overlay {
+  backdrop-filter: blur(24px) saturate(140%);
+}
+.main-topBar-topbarContent {
+  border-radius: 16px;
+}
+.main-yourLibraryX-header,
+.main-yourLibraryX-libraryContainer {
+  background: transparent !important;
+}
+.main-playPauseButton-button,
+button[data-testid="control-button-playpause"] {
+  box-shadow: 0 0 0 1px rgba(191,128,91,.22), 0 0 18px rgba(128,80,216,.19);
+}
+.main-playPauseButton-button:hover,
+button[data-testid="control-button-playpause"]:hover {
+  box-shadow: 0 0 0 4px rgba(191,128,91,.15), 0 0 30px rgba(128,80,216,.3);
+}
+@media (max-width: 1050px) {
+  .main-entityHeader-container::after { display:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-trackList-trackListRow { transition:none; }
+}
