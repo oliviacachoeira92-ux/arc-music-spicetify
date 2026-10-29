@@ -1,0 +1,136 @@
+/*
+ * ARC Music — Obsidian Glass v0.1
+ * Spicetify desktop theme | CSS-only, no network requests.
+ * Copper is the identity; violet marks musical focus.
+ */
+:root {
+  --arc-obsidian: #0b0b10;
+  --arc-copper: #bf805b;
+  --arc-violet: #8050d8;
+  --arc-text: #ece9f2;
+  --arc-glass: rgba(31, 27, 39, .70);
+  --arc-glass-strong: rgba(23, 20, 31, .83);
+  --arc-stroke: rgba(226, 201, 227, .12);
+  --arc-radius: 18px;
+  --arc-blur: 22px;
+  --arc-shadow: 0 16px 48px rgba(0,0,0,.34);
+}
+body,
+.Root,
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node {
+  background: var(--arc-obsidian) !important;
+}
+.Root {
+  background-image:
+    radial-gradient(ellipse at 82% 5%, rgba(128,80,216,.13), transparent 43%),
+    radial-gradient(ellipse at 12% 90%, rgba(191,128,91,.10), transparent 42%) !important;
+}
+.Root__nav-bar,
+.Root__right-sidebar,
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView,
+.main-topBar-background,
+.main-topBar-overlay,
+.main-view-container__scroll-node-child {
+  background-color: transparent !important;
+}
+/* Glass surfaces use translucency and backdrop blur, without external imagery. */
+.Root__nav-bar,
+.Root__right-sidebar,
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView {
+  background: var(--arc-glass-strong) !important;
+  border: 1px solid var(--arc-stroke) !important;
+  border-radius: var(--arc-radius) !important;
+  box-shadow: var(--arc-shadow) !important;
+  backdrop-filter: blur(var(--arc-blur)) saturate(145%);
+  -webkit-backdrop-filter: blur(var(--arc-blur)) saturate(145%);
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar,
+.main-playBar-playBar {
+  background: rgba(20,17,28,.88) !important;
+  border: 1px solid rgba(191,128,91,.22) !important;
+  border-radius: 17px !important;
+  box-shadow: 0 -6px 34px rgba(0,0,0,.23), inset 0 1px rgba(255,255,255,.055);
+  backdrop-filter: blur(26px) saturate(150%);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+}
+.main-card-card,
+.main-cardImage-imageWrapper,
+.main-entityHeader-container,
+.main-trackList-trackListRow,
+.main-home-homeHeader,
+.main-shelf-shelf {
+  border-radius: 14px;
+}
+.main-card-card {
+  background: rgba(255,255,255,.035) !important;
+  border: 1px solid rgba(255,255,255,.07);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.main-card-card:hover,
+.main-card-card:focus-within {
+  background: rgba(128,80,216,.085) !important;
+  border-color: rgba(191,128,91,.30);
+  transform: translateY(-2px);
+}
+.main-trackList-trackListRow:hover,
+.main-trackList-trackListRow:focus-within {
+  background: rgba(128,80,216,.105) !important;
+}
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(191,128,91,.15) !important;
+}
+button,
+button[class*="Button"],
+.main-playPauseButton-button {
+  transition: box-shadow .2s ease, background-color .2s ease, transform .2s ease;
+}
+.main-playPauseButton-button:hover,
+button[data-testid="control-button-playpause"]:hover {
+  box-shadow: 0 0 0 5px rgba(128,80,216,.14), 0 0 24px rgba(128,80,216,.19);
+}
+.progress-bar__fg,
+.playback-bar .progress-bar__fg,
+.main-playbackBar-progressBar .progress-bar__fg {
+  background: linear-gradient(90deg, var(--arc-copper), var(--arc-violet)) !important;
+}
+.progress-bar__slider,
+.playback-bar .progress-bar__slider {
+  background: #d4a1f7 !important;
+  box-shadow: 0 0 12px rgba(128,80,216,.32);
+}
+.main-nowPlayingWidget-coverArt,
+.main-nowPlayingView-coverArt,
+.main-nowPlayingView-coverArtContainer img {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,.4), 0 0 26px rgba(128,80,216,.14);
+}
+.main-contextMenu-menu,
+.encore-dark-theme .encore-internal-color-text-base,
+[role="menu"] {
+  border-radius: 14px;
+}
+[role="menu"] {
+  background: rgba(26,22,35,.96) !important;
+  border: 1px solid var(--arc-stroke) !important;
+  box-shadow: var(--arc-shadow);
+  backdrop-filter: blur(18px);
+}
+a:focus-visible,
+button:focus-visible,
+[role="menuitem"]:focus-visible {
+  outline: 2px solid var(--arc-violet) !important;
+  outline-offset: 3px;
+}
+::selection { background: rgba(128,80,216,.4); color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .main-card-card, button, button[class*="Button"] { transition: none !important; transform: none !important; }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .Root__nav-bar, .Root__right-sidebar, .main-yourLibraryX-library,
+  .main-nowPlayingView-nowPlayingView { background: #17141e !important; }
+}
