@@ -523,3 +523,14 @@ html, body, #main, .Root, .Root__top-container {
 .Root__main-view div.IFbZ5VdI_2nwDM14H6Yn::after {
   background-color: transparent !important;
 }
+
+
+/* ARC Music v1.0 — exact inspected Spotify opaque playlist wrapper.
+   In DevTools this class has rgb(80,56,160) plus an opaque gradient.
+   The earlier override used the wrong case/characters and never matched. */
+.Root__main-view .IfBZ5VdI_2nwDM14H6Yh,
+.main-view-container__scroll-node-child .IfBZ5VdI_2nwDM14H6Yh {
+  background: rgba(17, 9, 28, .19) !important;
+  background-color: rgba(17, 9, 28, .19) !important;
+  background-image: none !important;
+}
