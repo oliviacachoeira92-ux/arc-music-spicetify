@@ -1,0 +1,536 @@
+/*
+ * ARC Music — Obsidian Glass v0.1
+ * Spicetify desktop theme | CSS-only, no network requests.
+ * Copper is the identity; violet marks musical focus.
+ */
+:root {
+  --arc-obsidian: #0b0b10;
+  --arc-copper: #bf805b;
+  --arc-violet: #8050d8;
+  --arc-text: #ece9f2;
+  --arc-glass: rgba(31, 27, 39, .70);
+  --arc-glass-strong: rgba(23, 20, 31, .83);
+  --arc-stroke: rgba(226, 201, 227, .12);
+  --arc-radius: 18px;
+  --arc-blur: 22px;
+  --arc-shadow: 0 16px 48px rgba(0,0,0,.34);
+}
+body,
+.Root,
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node {
+  background: var(--arc-obsidian) !important;
+}
+.Root {
+  background-image:
+    radial-gradient(ellipse at 82% 5%, rgba(128,80,216,.13), transparent 43%),
+    radial-gradient(ellipse at 12% 90%, rgba(191,128,91,.10), transparent 42%) !important;
+}
+.Root__nav-bar,
+.Root__right-sidebar,
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView,
+.main-topBar-background,
+.main-topBar-overlay,
+.main-view-container__scroll-node-child {
+  background-color: transparent !important;
+}
+/* Glass surfaces use translucency and backdrop blur, without external imagery. */
+.Root__nav-bar,
+.Root__right-sidebar,
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView {
+  background: var(--arc-glass-strong) !important;
+  border: 1px solid var(--arc-stroke) !important;
+  border-radius: var(--arc-radius) !important;
+  box-shadow: var(--arc-shadow) !important;
+  backdrop-filter: blur(var(--arc-blur)) saturate(145%);
+  -webkit-backdrop-filter: blur(var(--arc-blur)) saturate(145%);
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar,
+.main-playBar-playBar {
+  background: rgba(20,17,28,.88) !important;
+  border: 1px solid rgba(191,128,91,.22) !important;
+  border-radius: 17px !important;
+  box-shadow: 0 -6px 34px rgba(0,0,0,.23), inset 0 1px rgba(255,255,255,.055);
+  backdrop-filter: blur(26px) saturate(150%);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+}
+.main-card-card,
+.main-cardImage-imageWrapper,
+.main-entityHeader-container,
+.main-trackList-trackListRow,
+.main-home-homeHeader,
+.main-shelf-shelf {
+  border-radius: 14px;
+}
+.main-card-card {
+  background: rgba(255,255,255,.035) !important;
+  border: 1px solid rgba(255,255,255,.07);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.main-card-card:hover,
+.main-card-card:focus-within {
+  background: rgba(128,80,216,.085) !important;
+  border-color: rgba(191,128,91,.30);
+  transform: translateY(-2px);
+}
+.main-trackList-trackListRow:hover,
+.main-trackList-trackListRow:focus-within {
+  background: rgba(128,80,216,.105) !important;
+}
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(191,128,91,.15) !important;
+}
+button,
+button[class*="Button"],
+.main-playPauseButton-button {
+  transition: box-shadow .2s ease, background-color .2s ease, transform .2s ease;
+}
+.main-playPauseButton-button:hover,
+button[data-testid="control-button-playpause"]:hover {
+  box-shadow: 0 0 0 5px rgba(128,80,216,.14), 0 0 24px rgba(128,80,216,.19);
+}
+.progress-bar__fg,
+.playback-bar .progress-bar__fg,
+.main-playbackBar-progressBar .progress-bar__fg {
+  background: linear-gradient(90deg, var(--arc-copper), var(--arc-violet)) !important;
+}
+.progress-bar__slider,
+.playback-bar .progress-bar__slider {
+  background: #d4a1f7 !important;
+  box-shadow: 0 0 12px rgba(128,80,216,.32);
+}
+.main-nowPlayingWidget-coverArt,
+.main-nowPlayingView-coverArt,
+.main-nowPlayingView-coverArtContainer img {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,.4), 0 0 26px rgba(128,80,216,.14);
+}
+.main-contextMenu-menu,
+.encore-dark-theme .encore-internal-color-text-base,
+[role="menu"] {
+  border-radius: 14px;
+}
+[role="menu"] {
+  background: rgba(26,22,35,.96) !important;
+  border: 1px solid var(--arc-stroke) !important;
+  box-shadow: var(--arc-shadow);
+  backdrop-filter: blur(18px);
+}
+a:focus-visible,
+button:focus-visible,
+[role="menuitem"]:focus-visible {
+  outline: 2px solid var(--arc-violet) !important;
+  outline-offset: 3px;
+}
+::selection { background: rgba(128,80,216,.4); color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .main-card-card, button, button[class*="Button"] { transition: none !important; transform: none !important; }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .Root__nav-bar, .Root__right-sidebar, .main-yourLibraryX-library,
+  .main-nowPlayingView-nowPlayingView { background: #17141e !important; }
+}
+
+
+/* ARC MUSIC V0.2 — SIGNATURE GLASS LAYER
+   The screenshot review showed that previous selectors barely touched the
+   current Spotify layout. These hooks target the current main view structure.
+   CSS-only; no added JS, remote assets or alteration of user data. */
+:root {
+  --arc-deep: #09090f;
+  --arc-pane: rgba(17, 17, 26, .68);
+  --arc-edge: rgba(219, 169, 135, .25);
+  --arc-aura: rgba(127, 69, 205, .22);
+}
+body, .Root, .Root__main-view, .main-view-container, .main-view-container__scroll-node {
+  background-color: var(--arc-deep) !important;
+}
+.Root__main-view {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(219,169,135,.20);
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.055), 0 22px 65px rgba(0,0,0,.28);
+}
+.Root__main-view::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 88% 14%, rgba(114,53,191,.20), transparent 35%),
+    radial-gradient(circle at 0% 80%, rgba(191,128,91,.13), transparent 35%);
+}
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child {
+  position: relative;
+}
+.main-view-container__scroll-node-child,
+.main-view-container__scroll-node,
+.main-view-container,
+.main-home-homeHeader {
+  background-color: transparent !important;
+}
+.Root__nav-bar,
+.Root__right-sidebar,
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView {
+  background: linear-gradient(145deg,rgba(29,24,38,.84),rgba(11,11,18,.77)) !important;
+  border: 1px solid var(--arc-edge) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 12px 45px rgba(0,0,0,.28) !important;
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar,
+.main-playBar-playBar {
+  background:
+    linear-gradient(110deg,rgba(191,128,91,.12),transparent 30%,rgba(128,80,216,.13)),
+    rgba(13,11,20,.90) !important;
+  border: 1px solid rgba(191,128,91,.34) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.085), 0 -10px 32px rgba(0,0,0,.32) !important;
+}
+.Root__main-view .main-entityHeader-container,
+.Root__main-view .main-entityHeader-background,
+.Root__main-view .main-entityHeader-backgroundColor {
+  border-radius: 18px 18px 0 0;
+}
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  opacity: .50 !important;
+  filter: saturate(.7) !important;
+}
+/* The music header gets a deliberate glass veil rather than a flat gradient. */
+.main-entityHeader-container {
+  position: relative;
+  background-image: linear-gradient(125deg,rgba(13,10,19,.42),rgba(66,31,85,.22)) !important;
+  box-shadow: inset 0 -1px rgba(191,128,91,.2);
+}
+.main-entityHeader-container::after {
+  content: "ARC / MUSIC";
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  z-index: 2;
+  pointer-events: none;
+  color: rgba(233,193,164,.72);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .32em;
+}
+.main-trackList-trackListRow {
+  border: 1px solid transparent;
+  border-radius: 11px !important;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.main-trackList-trackListRow:hover {
+  background: rgba(128,80,216,.13) !important;
+  border-color: rgba(191,128,91,.18);
+}
+.main-card-card {
+  background: linear-gradient(155deg,rgba(53,39,67,.48),rgba(22,20,30,.62)) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.055),0 12px 30px rgba(0,0,0,.16) !important;
+  backdrop-filter: blur(18px) saturate(140%);
+}
+.main-card-card:hover { box-shadow: inset 0 1px rgba(255,255,255,.12),0 16px 34px rgba(0,0,0,.27),0 0 0 1px rgba(191,128,91,.26) !important; }
+.main-topBar-topbarContent,
+.main-topBar-background,
+.main-topBar-overlay {
+  backdrop-filter: blur(24px) saturate(140%);
+}
+.main-topBar-topbarContent {
+  border-radius: 16px;
+}
+.main-yourLibraryX-header,
+.main-yourLibraryX-libraryContainer {
+  background: transparent !important;
+}
+.main-playPauseButton-button,
+button[data-testid="control-button-playpause"] {
+  box-shadow: 0 0 0 1px rgba(191,128,91,.22), 0 0 18px rgba(128,80,216,.19);
+}
+.main-playPauseButton-button:hover,
+button[data-testid="control-button-playpause"]:hover {
+  box-shadow: 0 0 0 4px rgba(191,128,91,.15), 0 0 30px rgba(128,80,216,.3);
+}
+@media (max-width: 1050px) {
+  .main-entityHeader-container::after { display:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-trackList-trackListRow { transition:none; }
+}
+
+
+/* ARC MUSIC v0.3 — PHOENIX UNDER GLASS
+   Original SVG artwork is packaged locally with this theme.
+   Keep foreground text opaque, instead of fading the whole interface. */
+.Root {
+  isolation: isolate;
+  background: #09070e url("phoenix.svg") center center / cover no-repeat fixed !important;
+}
+.Root::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(5,4,9,.26),rgba(9,6,15,.04) 60%, rgba(8,5,11,.18));
+}
+.Root__top-container, .Root__main-view, .Root__nav-bar, .Root__right-sidebar, .Root__now-playing-bar {
+  position: relative;
+  z-index: 1;
+}
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child {
+  background: transparent !important;
+}
+.Root__main-view::before {
+  background: linear-gradient(180deg, rgba(10,8,16,.12),rgba(10,8,16,.3) 70%,rgba(10,8,16,.51)) !important;
+}
+.main-view-container__scroll-node-child {
+  background: rgba(10,8,16,.25) !important;
+}
+.Root__nav-bar,
+.Root__right-sidebar {
+  background: linear-gradient(135deg,rgba(19,11,28,.64),rgba(12,9,20,.72)) !important;
+  backdrop-filter: blur(28px) saturate(145%) !important;
+}
+.main-yourLibraryX-library,
+.main-nowPlayingView-nowPlayingView {
+  background: rgba(17,10,24,.56) !important;
+  backdrop-filter: blur(22px) saturate(140%) !important;
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar {
+  background: linear-gradient(115deg,rgba(39,14,28,.72),rgba(27,10,38,.68)) !important;
+  backdrop-filter: blur(28px) saturate(135%) !important;
+}
+.main-trackList-trackListRow:hover {
+  background: rgba(141,66,137,.18) !important;
+}
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(191,128,91,.18) !important;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .Root__nav-bar,.Root__right-sidebar,.main-yourLibraryX-library {
+    background:rgba(12,9,20,.92) !important;
+  }
+}
+
+
+/* v0.4: inline artwork to avoid relative asset URL issues in injected CSS.
+   Place image at the main-view layer, not only the Root beneath Spotify panes. */
+.Root__main-view {
+  background: #0a0810 url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221920%22%20height%3D%221080%22%20viewBox%3D%220%200%201920%201080%22%3E%0A%3Cdefs%3E%0A%3CradialGradient%20id%3D%22bg%22%3E%3Cstop%20stop-color%3D%22%232b1035%22%2F%3E%3Cstop%20offset%3D%22.56%22%20stop-color%3D%22%23130b1a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2308070e%22%2F%3E%3C%2FradialGradient%3E%0A%3ClinearGradient%20id%3D%22fire%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%22.8%22%3E%3Cstop%20stop-color%3D%22%237e3bb9%22%2F%3E%3Cstop%20offset%3D%22.45%22%20stop-color%3D%22%23d15a78%22%2F%3E%3Cstop%20offset%3D%22.75%22%20stop-color%3D%22%23f58d42%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffe0a0%22%2F%3E%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22wing%22%3E%3Cstop%20stop-color%3D%22%236b319e%22%20stop-opacity%3D%22.4%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23ac3b62%22%20stop-opacity%3D%22.85%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f9a25a%22%20stop-opacity%3D%22.95%22%2F%3E%3C%2FlinearGradient%3E%0A%3Cfilter%20id%3D%22glow%22%20x%3D%22-60%25%22%20y%3D%22-60%25%22%20width%3D%22220%25%22%20height%3D%22220%25%22%3E%3CfeGaussianBlur%20stdDeviation%3D%2216%22%2F%3E%3C%2Ffilter%3E%0A%3Cfilter%20id%3D%22soft%22%3E%3CfeGaussianBlur%20stdDeviation%3D%223%22%2F%3E%3C%2Ffilter%3E%0A%3C%2Fdefs%3E%0A%3Crect%20width%3D%221920%22%20height%3D%221080%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%3Cellipse%20cx%3D%221285%22%20cy%3D%22460%22%20rx%3D%22640%22%20ry%3D%22510%22%20fill%3D%22%236c2471%22%20opacity%3D%22.18%22%20filter%3D%22url(%23glow)%22%2F%3E%0A%3Cg%20transform%3D%22translate(380%2015)%22%3E%0A%3Cg%20fill%3D%22url(%23wing)%22%20stroke%3D%22%23d86768%22%20stroke-width%3D%223%22%20stroke-opacity%3D%22.55%22%3E%0A%3Cpath%20d%3D%22M855%20465%20C550%20205%20275%2045%20-45%203%20C150%20125%20230%20248%20455%20375%20C215%20280%2050%20282%20-100%20230%20C70%20390%20315%20505%20676%20543%20Z%22%2F%3E%0A%3Cpath%20d%3D%22M870%20425%20C680%20170%20465%2015%20200%20-75%20C390%20125%20505%20305%20706%20459%20Z%22%2F%3E%0A%3Cpath%20d%3D%22M865%20448%20C510%20330%20250%20350%20-70%20335%20C165%20490%20445%20570%20790%20600%20Z%22%2F%3E%0A%3Cpath%20d%3D%22M860%20495%20C605%20540%20460%20715%20295%20950%20C650%20795%20805%20674%20895%20537%20Z%22%2F%3E%0A%3Cpath%20d%3D%22M880%20495%20C745%20690%20720%20800%20685%201040%20C945%20840%201005%20645%20940%20485%20Z%22%2F%3E%0A%3Cpath%20d%3D%22M940%20504%20C1010%20690%201130%20745%201330%20875%20C1210%20660%201170%20535%201020%20444%20Z%22%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22url(%23fire)%22%20stroke-linecap%3D%22round%22%3E%0A%3Cpath%20d%3D%22M-15%207%20Q405%20200%20865%20470%22%20stroke-width%3D%228%22%2F%3E%0A%3Cpath%20d%3D%22M50%20230%20Q425%20400%20875%20480%22%20stroke-width%3D%226%22%2F%3E%0A%3Cpath%20d%3D%22M-30%20340%20Q400%20550%20874%20520%22%20stroke-width%3D%225%22%2F%3E%0A%3Cpath%20d%3D%22M298%20936%20Q665%20590%20910%20518%22%20stroke-width%3D%227%22%2F%3E%0A%3Cpath%20d%3D%22M685%201020%20Q825%20660%20920%20490%22%20stroke-width%3D%226%22%2F%3E%0A%3Cpath%20d%3D%22M1300%20860%20Q1110%20560%20948%20478%22%20stroke-width%3D%225%22%2F%3E%0A%3C%2Fg%3E%0A%3Cpath%20d%3D%22M835%20450%20C835%20338%20905%20257%201032%20244%20C1120%20228%201180%20268%201205%20306%20C1140%20303%201110%20320%201080%20347%20C1042%20395%201085%20425%201050%20476%20C1015%20533%20920%20571%20857%20534%20Z%22%20fill%3D%22url(%23fire)%22%20opacity%3D%22.85%22%2F%3E%0A%3Cpath%20d%3D%22M1021%20273%20C1120%20206%201250%20197%201375%20215%20L1280%20250%20L1435%20244%20L1300%20285%20Q1260%20308%201195%20313%20L1160%20351%20L1080%20339%20Z%22%20fill%3D%22%23bd4765%22%2F%3E%0A%3Cpath%20d%3D%22M1132%20328%20Q1268%20314%201375%20354%20L1236%20375%20Q1165%20375%201132%20328%22%20fill%3D%22%23ef894d%22%2F%3E%0A%3Cpath%20d%3D%22M1347%20351%20L1445%20364%20L1359%20384%20Z%22%20fill%3D%22%23ffbf72%22%2F%3E%0A%3Cpath%20d%3D%22M1208%20310%20Q1225%20303%201244%20311%22%20fill%3D%22none%22%20stroke%3D%22%23ffe8c7%22%20stroke-width%3D%228%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%221224%22%20cy%3D%22309%22%20r%3D%225%22%20fill%3D%22%23fff5d4%22%2F%3E%0A%3Cpath%20d%3D%22M866%20531%20Q815%20720%20905%20900%20Q1017%20705%20985%20521%22%20fill%3D%22url(%23fire)%22%20opacity%3D%22.8%22%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D%22%23ffc984%22%20opacity%3D%22.68%22%3E%3Ccircle%20cx%3D%221700%22%20cy%3D%22110%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%221460%22%20cy%3D%22780%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%22680%22%20cy%3D%22170%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%22925%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%221770%22%20cy%3D%22602%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%22940%22%20cy%3D%22865%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%0A%3C%2Fsvg%3E") center center / cover no-repeat !important;
+}
+.Root__main-view::before {
+  background: linear-gradient(180deg,rgba(10,8,16,.12),rgba(10,8,16,.22) 65%,rgba(10,8,16,.42)) !important;
+}
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child,
+.main-entityHeader-container,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-actionBarBackground-background {
+  background-color: transparent !important;
+}
+.main-view-container__scroll-node-child {
+  background: rgba(8,7,14,.19) !important;
+}
+.Root__nav-bar {
+  background: rgba(16,11,23,.80) !important;
+}
+
+
+/* ARC Music v0.5 — Phoenix visibility fix
+   Spotify paints several opaque layers above Root. Draw the art on the
+   scroll container itself, and clear its child surfaces rather than relying
+   on the Root wallpaper behind them. Keep artwork out of track text. */
+html, body, #main, .Root, .Root__top-container {
+  background-color: #08070d !important;
+}
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node {
+  position: relative !important;
+  isolation: isolate;
+}
+.main-view-container__scroll-node {
+  background: linear-gradient(180deg, rgba(9,6,15,.08), rgba(9,6,15,.32)) !important;
+}
+.main-view-container__scroll-node::before {
+  content: "" !important;
+  display: block !important;
+  position: fixed !important;
+  inset: 60px 24px 90px clamp(220px, 24vw, 360px) !important;
+  pointer-events: none !important;
+  background-image: url("https://raw.githubusercontent.com/oliviacachoeira92-ux/arc-music-spicetify/feat/obsidian-glass-v0.1/ObsidianGlass/phoenix.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  opacity: .90 !important;
+  z-index: -1 !important;
+}
+.main-view-container__scroll-node-child,
+.main-view-container__scroll-node-child > div,
+.main-view-container__scroll-node-child > div > div,
+.main-actionBarBackground-background,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  background-color: transparent !important;
+}
+.main-view-container__scroll-node-child {
+  background-image: linear-gradient(90deg, rgba(10,7,16,.10), rgba(10,7,16,.31)) !important;
+}
+.main-entityHeader-container,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  background-image: none !important;
+}
+.main-entityHeader-container {
+  background: rgba(21,12,31,.40) !important;
+  border: 1px solid rgba(191,128,91,.2);
+  backdrop-filter: blur(8px);
+}
+.main-trackList-trackListRow,
+.main-trackList-trackListHeader {
+  background-color: rgba(9,7,15,.12);
+}
+.main-yourLibraryX-library,
+.Root__nav-bar {
+  background: rgba(14,10,22,.72) !important;
+}
+@media (max-width: 900px) {
+ .main-view-container__scroll-node::before { inset: 64px 12px 90px 150px !important; opacity: .6 !important; }
+}
+
+
+/* v0.6 artwork refresh — background that was confirmed visible in v0.5. */
+.main-view-container__scroll-node::before {
+  background-image: url("https://raw.githubusercontent.com/oliviacachoeira92-ux/arc-music-spicetify/feat/obsidian-glass-v0.1/ObsidianGlass/phoenix.svg?v=6") !important;
+  background-size: cover !important;
+  background-position: 62% 44% !important;
+  opacity: .92 !important;
+}
+.main-view-container__scroll-node-child {
+  background: linear-gradient(90deg,rgba(8,6,13,.40),rgba(12,8,19,.22) 55%,rgba(10,7,15,.15)) !important;
+}
+
+
+/* v0.7 cinematic art: use the actual image file, not vector approximation.
+   Asset expected: ObsidianGlass/phoenix-cinematic.png */
+.main-view-container__scroll-node::before {
+  background-image: url("https://raw.githubusercontent.com/oliviacachoeira92-ux/arc-music-spicetify/feat/obsidian-glass-v0.1/ObsidianGlass/phoenix-cinematic.png") !important;
+  background-position: 65% 46% !important;
+  background-size: cover !important;
+  opacity: .88 !important;
+}
+.main-view-container__scroll-node-child {
+  background: linear-gradient(90deg,rgba(8,6,13,.36),rgba(12,8,19,.20) 55%,rgba(10,7,15,.14)) !important;
+}
+
+
+/* ARC MUSIC v0.8 — transparent glass over cinematic wallpaper.
+   Spotify's main view draws opaque gradients on nested playlist elements.
+   Clear these surfaces, but preserve cards/artwork and foreground text. */
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child,
+.main-view-container__scroll-node-child > div,
+.main-view-container__scroll-node-child > div > div {
+  background-color: transparent !important;
+}
+.main-view-container__scroll-node-child {
+  background: rgba(9,6,16,.16) !important;
+}
+.main-entityHeader-container,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.main-actionBarBackground-background,
+.main-actionBarBackground-backgroundContainer,
+.main-trackList-trackList,
+.main-trackList-trackListHeader,
+.main-trackList-trackListRow,
+.main-view-container__scroll-node [class*="main-view-container__scroll-node-child"] {
+  background-color: transparent !important;
+}
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.main-actionBarBackground-background,
+.main-actionBarBackground-backgroundContainer {
+  background-image: none !important;
+  opacity: 0 !important;
+}
+.main-entityHeader-container {
+  background: linear-gradient(120deg,rgba(20,10,32,.27),rgba(35,13,35,.16)) !important;
+  border: 1px solid rgba(226,148,99,.22) !important;
+  border-radius: 18px !important;
+  -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+  backdrop-filter: blur(8px) saturate(120%) !important;
+}
+.main-entityHeader-container::after { display:none !important; }
+.main-trackList-trackListRow:hover {
+  background: rgba(119,58,143,.20) !important;
+}
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(187,109,82,.20) !important;
+}
+/* Preserve album art and cover imagery without dimming them. */
+.main-cardImage-imageWrapper,
+.main-entityHeader-image,
+.main-entityHeader-image img {
+  opacity: 1 !important;
+}
+/* More transparent navigation and footer glass */
+.Root__nav-bar,
+.main-yourLibraryX-library,
+.Root__right-sidebar {
+  background: rgba(14,9,22,.60) !important;
+  border: 1px solid rgba(227,153,100,.20) !important;
+  backdrop-filter: blur(15px) saturate(135%) !important;
+}
+.Root__now-playing-bar,
+.main-nowPlayingBar-nowPlayingBar,
+.main-playBar-playBar {
+  background: rgba(26,12,31,.64) !important;
+  border: 1px solid rgba(227,153,100,.27) !important;
+  backdrop-filter: blur(20px) saturate(135%) !important;
+}
+
+
+/* ARC Music v0.9 — inspected Spotify 2026-10-29 opaque view layer.
+   DevTools showed div.IFbZ5VdI_2nwDM14H6Yn background rgb(80,56,160).
+   Override only this identified view wrapper; Spotify may rename hashed class
+   after an app update. Keep covers/controls untouched. */
+.Root__main-view div.IFbZ5VdI_2nwDM14H6Yn,
+.main-view-container__scroll-node-child div.IFbZ5VdI_2nwDM14H6Yn {
+  background: rgba(17, 9, 28, .16) !important;
+  background-color: rgba(17, 9, 28, .16) !important;
+  background-image: none !important;
+}
+.Root__main-view div.IFbZ5VdI_2nwDM14H6Yn::before,
+.Root__main-view div.IFbZ5VdI_2nwDM14H6Yn::after {
+  background-color: transparent !important;
+}
+
+
+/* ARC Music v1.0 — exact inspected Spotify opaque playlist wrapper.
+   In DevTools this class has rgb(80,56,160) plus an opaque gradient.
+   The earlier override used the wrong case/characters and never matched. */
+.Root__main-view .IfBZ5VdI_2nwDM14H6Yh,
+.main-view-container__scroll-node-child .IfBZ5VdI_2nwDM14H6Yh {
+  background: rgba(17, 9, 28, .19) !important;
+  background-color: rgba(17, 9, 28, .19) !important;
+  background-image: none !important;
+}
