@@ -507,3 +507,19 @@ html, body, #main, .Root, .Root__top-container {
   border: 1px solid rgba(227,153,100,.27) !important;
   backdrop-filter: blur(20px) saturate(135%) !important;
 }
+
+
+/* ARC Music v0.9 — inspected Spotify 2026-10-29 opaque view layer.
+   DevTools showed div.IFbZ5VdI_2nwDM14H6Yn background rgb(80,56,160).
+   Override only this identified view wrapper; Spotify may rename hashed class
+   after an app update. Keep covers/controls untouched. */
+.Root__main-view div.IFbZ5VdI_2nwDM14H6Yn,
+.main-view-container__scroll-node-child div.IFbZ5VdI_2nwDM14H6Yn {
+  background: rgba(17, 9, 28, .16) !important;
+  background-color: rgba(17, 9, 28, .16) !important;
+  background-image: none !important;
+}
+.Root__main-view div.IFbZ5VdI_2nwDM14H6Yn::before,
+.Root__main-view div.IFbZ5VdI_2nwDM14H6Yn::after {
+  background-color: transparent !important;
+}
